@@ -14,9 +14,9 @@ public class StationEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String stationName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String stationCode;
 }

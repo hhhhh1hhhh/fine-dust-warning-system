@@ -1,4 +1,4 @@
-package com.example.finedust;
+package com.example.finedust.data;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
