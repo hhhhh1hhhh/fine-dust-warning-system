@@ -18,8 +18,8 @@ public class JsonData {
     private String stationCode;
 
     @JsonProperty("PM10")
-    private int pm10;
+    private Integer pm10;
 
     @JsonProperty("PM2.5")
-    private int pm25;
+    private Integer pm25;
 }

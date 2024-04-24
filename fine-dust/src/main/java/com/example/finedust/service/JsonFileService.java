@@ -24,14 +24,14 @@ public class JsonFileService {
         File file = new ClassPathResource("data.json").getFile();
         JsonData[] JsonDataArray = objectMapper.readValue(file, JsonData[].class);
 
-//        for (JsonData jsonData : JsonDataArray) {
-//            System.out.println("날짜: " + jsonData.getDate());
-//            System.out.println("측정소명:" + jsonData.getStationName());
-//            System.out.println("측정소코드:" + jsonData.getStationCode());
-//            System.out.println("PM10: " + jsonData.getPm10());
-//            System.out.println("PM2.5: " + jsonData.getPm25());
-//            System.out.println();
-//        }
+        for (JsonData jsonData : JsonDataArray) {
+            System.out.println("날짜: " + jsonData.getDate());
+            System.out.println("측정소명:" + jsonData.getStationName());
+            System.out.println("측정소코드:" + jsonData.getStationCode());
+            System.out.println("PM10: " + jsonData.getPm10());
+            System.out.println("PM2.5: " + jsonData.getPm25());
+            System.out.println();
+        }
 
         return Arrays.asList(JsonDataArray);
     }

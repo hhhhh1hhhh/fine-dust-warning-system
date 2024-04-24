@@ -2,6 +2,7 @@ package com.example.finedust.controller;
 
 
 import com.example.finedust.data.JsonData;
+import com.example.finedust.service.CheckService;
 import com.example.finedust.service.JsonFileService;
 import com.example.finedust.service.StationService;
 import org.springframework.http.ResponseEntity;
@@ -19,10 +20,12 @@ public class MainController {
 
     private final JsonFileService jsonFlieService;
     private final StationService stationService;
+    private final CheckService checkService;
 
-    public MainController(JsonFileService jsonFlieService, StationService stationService) {
+    public MainController(JsonFileService jsonFlieService, StationService stationService, CheckService checkService) {
         this.jsonFlieService = jsonFlieService;
         this.stationService = stationService;
+        this.checkService = checkService;
     }
 
     @GetMapping("/read-data")
@@ -40,5 +43,12 @@ public class MainController {
         List<JsonData> stations = jsonFlieService.loadJsonData();
         stationService.saveStations(stations);
         return ResponseEntity.ok("Stations save successfully");
+    }
+
+    @PostMapping("/save-checks")
+    public ResponseEntity<String> saveCheckes() throws IOException {
+        List<JsonData> checks = jsonFlieService.loadJsonData();
+        checkService.saveChecks(checks);
+        return ResponseEntity.ok("Checks save successfully");
     }
 }

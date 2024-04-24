@@ -16,13 +16,13 @@ public class StationService {
     private final StationRepository stationRepository;
 
     @Transactional
-    public void saveStations(List<JsonData> stationDatas) {
-        for (JsonData data : stationDatas) {
+    public void saveStations(List<JsonData> stationData) {
+        for (JsonData data : stationData) {
             if (!stationRepository.existsByStationCode(data.getStationCode())) {
-                StationEntity entity = new StationEntity();
-                entity.setStationName(data.getStationName());
-                entity.setStationCode(data.getStationCode());
-                stationRepository.save(entity);
+                StationEntity stationEntity = new StationEntity();
+                stationEntity.setStationName(data.getStationName());
+                stationEntity.setStationCode(data.getStationCode());
+                stationRepository.save(stationEntity);
             }
         }
     }
