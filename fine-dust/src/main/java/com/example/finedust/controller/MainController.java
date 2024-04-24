@@ -51,4 +51,6 @@ public class MainController {
         checkService.saveChecks(checks);
         return ResponseEntity.ok("Checks save successfully");
     }
+
+    // @PostMapping("/save-warnings")
 }
