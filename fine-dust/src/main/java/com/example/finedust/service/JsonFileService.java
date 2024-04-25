@@ -19,7 +19,6 @@ public class JsonFileService {
         this.objectMapper = objectMapper;
     }
 
-
     public List<JsonData> loadJsonData() throws IOException {
         File file = new ClassPathResource("data.json").getFile();
         JsonData[] JsonDataArray = objectMapper.readValue(file, JsonData[].class);

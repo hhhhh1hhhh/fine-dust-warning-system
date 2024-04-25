@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "warningLevel_entity")
-public class WaringLevelEntity {
+public class WarningLevelEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

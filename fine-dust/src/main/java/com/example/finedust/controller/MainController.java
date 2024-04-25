@@ -5,6 +5,7 @@ import com.example.finedust.data.JsonData;
 import com.example.finedust.service.CheckService;
 import com.example.finedust.service.JsonFileService;
 import com.example.finedust.service.StationService;
+import com.example.finedust.service.WarningService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,12 +22,16 @@ public class MainController {
     private final JsonFileService jsonFlieService;
     private final StationService stationService;
     private final CheckService checkService;
+    private final WarningService warningService;
 
-    public MainController(JsonFileService jsonFlieService, StationService stationService, CheckService checkService) {
+    public MainController(JsonFileService jsonFlieService, StationService stationService,
+                          CheckService checkService, WarningService warningService) {
         this.jsonFlieService = jsonFlieService;
         this.stationService = stationService;
         this.checkService = checkService;
+        this.warningService = warningService;
     }
+
 
     @GetMapping("/read-data")
     public ResponseEntity<List<JsonData>> getJsonData() {
@@ -52,5 +57,10 @@ public class MainController {
         return ResponseEntity.ok("Checks save successfully");
     }
 
-    // @PostMapping("/save-warnings")
+    @PostMapping("/save-warnings")
+    public ResponseEntity<String> saveWarnings() throws IOException {
+        List<JsonData> warnings = jsonFlieService.loadJsonData();
+        warningService.saveWarnings(warnings);
+        return ResponseEntity.ok("Warnings save successfully");
+    }
 }

@@ -24,10 +24,9 @@ public class WarningEntity {
     @Column(nullable = false)
     private LocalDateTime issuedAt;
 
-    @Column(nullable = false)
-    private String warningLevel;
-
-    @Column(nullable = false)
-    private int warningGrade;
+    /* Waring:warningLevel = N:1*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "warninglevel_id", referencedColumnName = "id")
+    private WarningLevelEntity warningLevelEntity;
 
 }

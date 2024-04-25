@@ -22,17 +22,19 @@ public class CheckService {
     private final StationRepository stationRepository;
 
     public void saveChecks(List<JsonData> checkData) {
-        for(JsonData data : checkData) {
-            Optional<StationEntity> optionStationEntity = stationRepository.findByStationCode(data.getStationCode());
+        for(JsonData jsonData : checkData) {
+            Optional<StationEntity> optionStationEntity = stationRepository.findByStationCode(jsonData.getStationCode());
             // 측정된 미세먼지, 초미세먼지가 모두 null --> 측정소 점검이 있던 날
             // 미세먼지만 null일 때, 초미세먼지만 null일 때 따로 처리?
-            if(data.getPm10() == null && data.getPm25() == null){
+            if(jsonData.getPm10() == null && jsonData.getPm25() == null){
                 StationEntity stationEntity = optionStationEntity.orElseThrow(() -> new RuntimeException("Station not found"));
                 CheckEntity checkentity = new CheckEntity();
                 checkentity.setStationEntity(stationEntity);
-                checkentity.setCheckDate(LocalDateTime.parse(data.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH")));
+                checkentity.setCheckDate(LocalDateTime.parse(jsonData.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH")));
                 checkRepository.save(checkentity);
             }
         }
     }
+
+
 }
