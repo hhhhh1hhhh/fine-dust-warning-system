@@ -2,6 +2,7 @@ package com.example.finedust.controller;
 
 
 import com.example.finedust.data.JsonData;
+import com.example.finedust.entity.CheckEntity;
 import com.example.finedust.service.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,18 +18,18 @@ import java.util.List;
 public class MainController {
 
     private final JsonFileService jsonFlieService;
-    private final StationService stationService;
+//    private final StationService stationService;
     private final CheckService checkService;
-    private final WarningService warningService;
+//    private final WarningService warningService;
     private final FineDustService fineDustService;
 
-    public MainController(JsonFileService jsonFlieService, StationService stationService,
-                          CheckService checkService, WarningService warningService,
+    public MainController(JsonFileService jsonFlieService,
+                          CheckService checkService,
                           FineDustService fineDustService) {
         this.jsonFlieService = jsonFlieService;
-        this.stationService = stationService;
+//        this.stationService = stationService;
         this.checkService = checkService;
-        this.warningService = warningService;
+//        this.warningService = warningService;
         this.fineDustService = fineDustService;
     }
 
@@ -50,25 +51,16 @@ public class MainController {
         return ResponseEntity.ok("fine-dust save successfully");
     }
 
-
-    @PostMapping("/save-stations")
-    public ResponseEntity<String> saveStations() throws IOException {
-        List<JsonData> stations = jsonFlieService.loadJsonData();
-        stationService.saveStations(stations);
-        return ResponseEntity.ok("Stations save successfully");
-    }
-
     @PostMapping("/save-checks")
-    public ResponseEntity<String> saveCheckes() throws IOException {
-        List<JsonData> checks = jsonFlieService.loadJsonData();
-        checkService.saveChecks(checks);
+    public ResponseEntity<String> saveChecks(){
+        checkService.SaveCheckZeroPm();
         return ResponseEntity.ok("Checks save successfully");
     }
-
-    @PostMapping("/save-warnings")
-    public ResponseEntity<String> saveWarnings() throws IOException {
-        List<JsonData> warnings = jsonFlieService.loadJsonData();
-        warningService.saveWarnings(warnings);
-        return ResponseEntity.ok("Warnings save successfully");
-    }
+//
+//    @PostMapping("/save-warnings")
+//    public ResponseEntity<String> saveWarnings() throws IOException {
+//        List<JsonData> warnings = jsonFlieService.loadJsonData();
+//        warningService.saveWarnings(warnings);
+//        return ResponseEntity.ok("Warnings save successfully");
+//    }
 }

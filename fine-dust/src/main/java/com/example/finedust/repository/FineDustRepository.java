@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface FineDustRepository extends JpaRepository<FineDustEntity, Long> {
 
+    List<FineDustEntity> findByPm10AndPm25(int pm10, int pm25);
 }

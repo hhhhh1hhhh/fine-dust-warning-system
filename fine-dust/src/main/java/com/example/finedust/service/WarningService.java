@@ -58,7 +58,7 @@ public class WarningService {
 
         // PM10 값이 null인 경우 0으로 설정
         int pm10Value = jsonData.getPm10() != null ? jsonData.getPm10() : 0;
-//       int pm25Value = jsonData.getPm25() != null ? jsonData.getPm25() : 0;
+//        int pm25Value = jsonData.getPm25() != null ? jsonData.getPm25() : 0;
 
         if (pm10Value >= 300) {
             return "미세먼지 경보";
@@ -67,5 +67,7 @@ public class WarningService {
         } else {
             return null;
         }
+
+
     }
 }

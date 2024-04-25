@@ -14,13 +14,18 @@ public class CheckEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
 
-    /* Check:Station = N:1 */
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "station_id", referencedColumnName = "id")
-    private StationEntity stationEntity;
+    @Column(name = "pm10")
+    private int pm10;
 
-    @Column(nullable = false)
-    private LocalDateTime checkDate;
+    @Column(name = "pm25")
+    private int pm25;
+
+    @Column(name = "dateTime")
+    private LocalDateTime dateTime;
+
+    @Column(name = "stationName")
+    private String stationName;
+
 }

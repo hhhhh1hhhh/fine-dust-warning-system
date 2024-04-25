@@ -23,6 +23,9 @@ public class FineDustEntity {
     private String stationName;
 
     @Column(nullable = false)
+    private String stationCode;
+
+    @Column(nullable = false)
     private int pm10;
 
     @Column(nullable = false)
