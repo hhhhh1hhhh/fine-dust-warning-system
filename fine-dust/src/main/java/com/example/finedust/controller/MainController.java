@@ -2,10 +2,7 @@ package com.example.finedust.controller;
 
 
 import com.example.finedust.data.JsonData;
-import com.example.finedust.service.CheckService;
-import com.example.finedust.service.JsonFileService;
-import com.example.finedust.service.StationService;
-import com.example.finedust.service.WarningService;
+import com.example.finedust.service.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,13 +20,16 @@ public class MainController {
     private final StationService stationService;
     private final CheckService checkService;
     private final WarningService warningService;
+    private final FineDustService fineDustService;
 
     public MainController(JsonFileService jsonFlieService, StationService stationService,
-                          CheckService checkService, WarningService warningService) {
+                          CheckService checkService, WarningService warningService,
+                          FineDustService fineDustService) {
         this.jsonFlieService = jsonFlieService;
         this.stationService = stationService;
         this.checkService = checkService;
         this.warningService = warningService;
+        this.fineDustService = fineDustService;
     }
 
 
@@ -42,6 +42,14 @@ public class MainController {
             return ResponseEntity.internalServerError().build();
         }
     }
+
+    @PostMapping("/save-finedust")
+    public ResponseEntity<String> saveFindDust() throws IOException {
+        List<JsonData> finedust = jsonFlieService.loadJsonData();
+        fineDustService.saveFinedust(finedust);
+        return ResponseEntity.ok("fine-dust save successfully");
+    }
+
 
     @PostMapping("/save-stations")
     public ResponseEntity<String> saveStations() throws IOException {
