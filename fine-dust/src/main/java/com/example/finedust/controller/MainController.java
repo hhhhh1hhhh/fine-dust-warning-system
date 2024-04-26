@@ -2,7 +2,6 @@ package com.example.finedust.controller;
 
 
 import com.example.finedust.data.JsonData;
-import com.example.finedust.entity.CheckEntity;
 import com.example.finedust.service.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,18 +17,17 @@ import java.util.List;
 public class MainController {
 
     private final JsonFileService jsonFlieService;
-//    private final StationService stationService;
     private final CheckService checkService;
-//    private final WarningService warningService;
+    private final AllWarningService allWarningService;
     private final FineDustService fineDustService;
 
     public MainController(JsonFileService jsonFlieService,
                           CheckService checkService,
-                          FineDustService fineDustService) {
+                          FineDustService fineDustService,
+                          AllWarningService allWarningService) {
         this.jsonFlieService = jsonFlieService;
-//        this.stationService = stationService;
         this.checkService = checkService;
-//        this.warningService = warningService;
+        this.allWarningService = allWarningService;
         this.fineDustService = fineDustService;
     }
 
@@ -56,11 +54,11 @@ public class MainController {
         checkService.SaveCheckZeroPm();
         return ResponseEntity.ok("Checks save successfully");
     }
-//
-//    @PostMapping("/save-warnings")
-//    public ResponseEntity<String> saveWarnings() throws IOException {
-//        List<JsonData> warnings = jsonFlieService.loadJsonData();
-//        warningService.saveWarnings(warnings);
-//        return ResponseEntity.ok("Warnings save successfully");
-//    }
+
+    @PostMapping("/save-warnings")
+    public ResponseEntity<String> saveWarnings(){
+        allWarningService.checkAllAdvisories();
+
+        return ResponseEntity.ok("Warnings save successfully");
+    }
 }

@@ -4,5 +4,4 @@ import com.example.finedust.entity.WarningLevelEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WarningLevelRepository extends JpaRepository<WarningLevelEntity, Integer> {
-    WarningLevelEntity findByType(String warningType);
 }

@@ -7,7 +7,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "warningLevel_entity")
+@Table(name = "warninglevel_entity")
 public class WarningLevelEntity {
 
     @Id

@@ -9,22 +9,22 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table(name = "warning_entity")
-public class WarningEntity {
+@Table(name = "allwaring_Entity")
+public class AllWarningEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
     private String stationName;
 
-    @Column(nullable = false)
     private LocalDateTime dateTime;
 
-//    /* Waring:warningLevel = N:1*/
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "warninglevel_id", referencedColumnName = "id")
-//    private WarningLevelEntity warningLevelEntity;
+    private Integer pmValue;
+
+    /* Waring:warningLevel = N:1*/
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "warninglevel_id", referencedColumnName = "id")
+    private WarningLevelEntity warningLevelEntity;
 
 }

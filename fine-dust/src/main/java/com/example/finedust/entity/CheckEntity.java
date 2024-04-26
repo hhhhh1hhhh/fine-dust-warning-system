@@ -16,16 +16,16 @@ public class CheckEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "pm10")
+    @Column(nullable = false)
     private int pm10;
 
-    @Column(name = "pm25")
+    @Column(nullable = false)
     private int pm25;
 
-    @Column(name = "dateTime")
+    @Column(nullable = false)
     private LocalDateTime dateTime;
 
-    @Column(name = "stationName")
+    @Column(nullable = false)
     private String stationName;
 
 }
