@@ -20,15 +20,15 @@ public class MainController {
     private final CheckService checkService;
     private final AllWarningService allWarningService;
     private final FineDustService fineDustService;
+    private final WarningService warningService;
 
-    public MainController(JsonFileService jsonFlieService,
-                          CheckService checkService,
-                          FineDustService fineDustService,
-                          AllWarningService allWarningService) {
+    public MainController(JsonFileService jsonFlieService, CheckService checkService,
+                          FineDustService fineDustService, AllWarningService allWarningService, WarningService warningService) {
         this.jsonFlieService = jsonFlieService;
         this.checkService = checkService;
         this.allWarningService = allWarningService;
         this.fineDustService = fineDustService;
+        this.warningService = warningService;
     }
 
 
@@ -55,10 +55,15 @@ public class MainController {
         return ResponseEntity.ok("Checks save successfully");
     }
 
-    @PostMapping("/save-warnings")
+    @PostMapping("/save-all-warnings")
     public ResponseEntity<String> saveWarnings(){
         allWarningService.checkAllAdvisories();
+        return ResponseEntity.ok("All-Warnings save successfully");
+    }
 
-        return ResponseEntity.ok("Warnings save successfully");
+    @PostMapping("/join")
+    public ResponseEntity<String> join(){
+        warningService.findAllWarningsWithLevels();
+        return ResponseEntity.ok("join successfully");
     }
 }

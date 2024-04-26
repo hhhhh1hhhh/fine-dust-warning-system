@@ -96,4 +96,5 @@ public class AllWarningService {
         processWarning("PM2.5", "Advisory", 75, 150, 3); // 초미세먼지 주의보
         processWarning("PM2.5", "Warning", 150, null, 1); // 초미세먼지 경보
     }
+
 }
