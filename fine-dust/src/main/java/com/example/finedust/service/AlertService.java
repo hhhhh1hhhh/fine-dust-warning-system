@@ -41,7 +41,7 @@ public class AlertService {
     }
 
 
-    // 각 그룹 내에서 가장 높은 등급의 경보를 찾는 메서드 (여러 개를 리스트에 저장)
+    //    // 각 그룹 내에서 가장 높은 등급의 경보를 찾는 메서드 (여러 개를 리스트에 저장)
     private List<AllWarningEntity> findHighestLevelWarnings(List<AllWarningEntity> allWarningEntityList) {
         int lowestLevel = allWarningEntityList.stream()
                 .mapToInt(warning -> warning.getWarningLevelEntity().getLevel())
