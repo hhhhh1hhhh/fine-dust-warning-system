@@ -9,8 +9,8 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@Table(name = "warning_entity")
-public class WarningEntity {
+@Table(name = "alert_entity")
+public class AlertEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,9 +22,6 @@ public class WarningEntity {
     @Column(nullable = false)
     private LocalDateTime dateTime;
 
-//    /* Waring:warningLevel = N:1*/
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "warninglevel_id", referencedColumnName = "id")
-//    private WarningLevelEntity warningLevelEntity;
+    private String warningType; // 경보 단계
 
 }

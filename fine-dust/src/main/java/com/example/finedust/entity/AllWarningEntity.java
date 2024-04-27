@@ -27,4 +27,7 @@ public class AllWarningEntity {
     @JoinColumn(name = "warninglevel_id", referencedColumnName = "id")
     private WarningLevelEntity warningLevelEntity;
 
+    public String getWaringType() {
+        return warningLevelEntity.getType(); }
+
 }

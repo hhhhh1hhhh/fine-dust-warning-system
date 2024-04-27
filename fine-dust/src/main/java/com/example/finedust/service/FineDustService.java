@@ -30,8 +30,6 @@ public class FineDustService {
             fineDustEntity.setDateTime(LocalDateTime.parse(jsonData.getDate(), DateTimeFormatter.ofPattern("yyyy-MM-dd HH")));
             fineDustEntity.setStationName(jsonData.getStationName());
             fineDustEntity.setStationCode(jsonData.getStationCode());
-            // fineDustEntity.setPm10(jsonData.getPm10());
-            // fineDustEntity.setPm25(jsonData.getPm25());
 
             fineDustEntity.setPm10(jsonData.getPm10() != null ? jsonData.getPm10() : 0);
             fineDustEntity.setPm25(jsonData.getPm25() != null ? jsonData.getPm25() : 0);

@@ -2,6 +2,7 @@ package com.example.finedust.controller;
 
 
 import com.example.finedust.data.JsonData;
+import com.example.finedust.entity.AllWarningEntity;
 import com.example.finedust.service.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,25 +11,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/json-data") // http://localhost:8080/api/json-data/
+@RequestMapping("/api") // http://localhost:8080/api/
 public class MainController {
 
     private final JsonFileService jsonFlieService;
     private final CheckService checkService;
     private final AllWarningService allWarningService;
     private final FineDustService fineDustService;
-    private final WarningService warningService;
+    private final AlertService alertService;
 
     public MainController(JsonFileService jsonFlieService, CheckService checkService,
-                          FineDustService fineDustService, AllWarningService allWarningService, WarningService warningService) {
+                          FineDustService fineDustService, AllWarningService allWarningService,
+                          AlertService alertService) {
         this.jsonFlieService = jsonFlieService;
         this.checkService = checkService;
         this.allWarningService = allWarningService;
         this.fineDustService = fineDustService;
-        this.warningService = warningService;
+        this.alertService = alertService;
     }
 
 
@@ -42,7 +47,7 @@ public class MainController {
         }
     }
 
-    @PostMapping("/save-finedust")
+    @PostMapping("/save-json-data")
     public ResponseEntity<String> saveFindDust() throws IOException {
         List<JsonData> finedust = jsonFlieService.loadJsonData();
         fineDustService.saveFinedust(finedust);
@@ -61,9 +66,11 @@ public class MainController {
         return ResponseEntity.ok("All-Warnings save successfully");
     }
 
-    @PostMapping("/join")
-    public ResponseEntity<String> join(){
-        warningService.findAllWarningsWithLevels();
-        return ResponseEntity.ok("join successfully");
+    @PostMapping("/alert-warnings")
+    public ResponseEntity<String> alertWarnings(){
+        alertService.saveAlert();
+        return ResponseEntity.ok("All-Warnings save successfully");
     }
+
 }
+

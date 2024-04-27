@@ -60,7 +60,7 @@ public class AllWarningService {
     }
 
 
-    // 경보 데이터 처리를 위한 일반화된 메서드
+    // 경보 데이터 처리
     private void processWarning(String pmType, String levelType, int minPm, Integer maxPm, int warningLevelId) {
         List<FineDustEntity> advisoryData = checkContinueData(findDataByTypeAndLevel(pmType, levelType), minPm, maxPm, pmType);
         WarningLevelEntity warningLevel = warningLevelRepository.findById(warningLevelId).orElse(null);
