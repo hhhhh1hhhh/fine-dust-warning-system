@@ -29,7 +29,7 @@
   - 프로젝트에서 사용된 주요 기술과 도구는 다음과 같습니다.
   - java: Oracle OpenJDK 17.0.8: 프로젝트 사용 언어
   - Spring Boot 3.2.5: 웹 애플리케이션 서버 구축
-  - MySQL 8.0.36: 서버 데이터베이스 
+  - MySQL 8.0.36: 서버 데이터베이스
   - Postman v10.24.24: API 개발 및 테스팅을 위한 툴
   - IntelliJ IDEA 2023.2 (Ultimate Edition): 프로젝트 개발 환경(IDE)
 
@@ -144,6 +144,9 @@
   |warninType|int|FK|경보 단계|
   - allwarning_entity에서 동일 시점에 경보가 복수 발생했을 때, 가장 높은 순위의 등급 정보를 저장하는 테이블입니다.
 </br>
-
-
 </br>
+
+### - API 설계
+- postman을 통해 API docs로 만들었습니다.
+- https://documenter.getpostman.com/view/34553670/2sA3BuVUCD
+
