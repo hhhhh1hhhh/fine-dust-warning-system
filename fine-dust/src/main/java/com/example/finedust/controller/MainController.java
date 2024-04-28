@@ -58,25 +58,25 @@ public class MainController {
         return ResponseEntity.ok("Checks save successfully");
     }
 
-        @PostMapping("/save-all-warnings")
-        public ResponseEntity<String> saveWarnings () {
-            if (!jsonDataSaved) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("저장된 데이터가 없습니다");
-            }
-            allWarningService.checkAllAdvisories();
-            warningDataSave = true;
-            return ResponseEntity.ok("All-Warnings save successfully");
+    @PostMapping("/save-all-warnings")
+    public ResponseEntity<String> saveWarnings () {
+        if (!jsonDataSaved) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("저장된 데이터가 없습니다");
         }
+        allWarningService.checkAllAdvisories();
+        warningDataSave = true;
+        return ResponseEntity.ok("All-Warnings save successfully");
+    }
 
-        @PostMapping("/alert-warnings")
-        public ResponseEntity<String> alertWarnings () {
-            if (!jsonDataSaved) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("저장된 데이터가 없습니다");
-            } else if (!warningDataSave) {
-                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("저장된 경보/주의보 데이터가 없습니다");
-            }
-            alertService.saveAlert();
-            return ResponseEntity.ok("All-Warnings save successfully");
+    @PostMapping("/alert-warnings")
+    public ResponseEntity<String> alertWarnings () {
+        if (!jsonDataSaved) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("저장된 데이터가 없습니다");
+        } else if (!warningDataSave) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("저장된 경보/주의보 데이터가 없습니다");
+        }
+        alertService.saveAlert();
+        return ResponseEntity.ok("All-Warnings save successfully");
     }
 }
 
